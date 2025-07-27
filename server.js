@@ -4,7 +4,6 @@ const cors = require('cors');
 require('dotenv').config();
 
 const supplierRoutes = require('./routes/supplier');
-const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const bulkOrdersRoute = require('./routes/bulkOrders');
 
@@ -19,11 +18,11 @@ mongoose.connect(process.env.MONGODB_URI , {
   .catch(err => console.error("MongoDB error:", err));
 
 app.use('/api/auth/vendor', require('./routes/vendor'));
+app.use('/api/vendor', require('./routes/vendor'));
 app.use('/api/auth/supplier', require('./routes/supplier'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/suppliers', supplierRoutes);
-app.use('/api', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/bulk-orders', bulkOrdersRoute);
 

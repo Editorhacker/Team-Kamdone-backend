@@ -31,4 +31,11 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// Minimal dashboard route for vendor dashboard
+router.get('/dashboard', async (req, res) => {
+  // In a real app, you would use authentication to get the vendor's ID
+  // For now, just return a dummy vendor name
+  res.json({ vendorName: 'Vendor' });
+});
+
 module.exports = router;

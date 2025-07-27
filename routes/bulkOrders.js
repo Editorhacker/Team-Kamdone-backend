@@ -66,8 +66,13 @@ router.get('/', async (req, res) => {
 
 // (Optional) GET: Fetch bulk orders for a supplier
 router.get('/:supplierId', async (req, res) => {
+  const { supplierId } = req.params;
+
+  if (!supplierId || supplierId === 'undefined') {
+    return res.status(400).json({ message: 'Supplier ID is required' });
+  }
+
   try {
-    const { supplierId } = req.params;
     const orders = await BulkOrder.find({ supplierId });
     res.json(orders);
   } catch (error) {
@@ -75,6 +80,7 @@ router.get('/:supplierId', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 module.exports = router;
 
